@@ -1,0 +1,13 @@
+Core Backend
+Universal Fortnite backend made in TypeScript and uses MongoDB
+
+Features:
+
+- [x] Universal Support
+- [x] Shop and Section Generator
+- [x] Easy Setup
+- [x] Cloud Storage
+- [x] Maintenance System
+- [ ] Discord Bot
+
+To change the shop, you must go into config/shop_config.json and change the price/id to whatever you like!
