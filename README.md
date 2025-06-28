@@ -16,7 +16,6 @@ To Do:
 - [ ] XMPP
 - [ ] Discord Auth
 - [ ] Gifting
-- [ ] STW Support
 - [ ] Matchmaking/Matchmaker
 
 How to use:
