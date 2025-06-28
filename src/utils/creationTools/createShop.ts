@@ -1,6 +1,9 @@
 import { Log } from "../handling/logging";
+const shop = Bun.file("config/shop_config.json");
+const config = await shop.json();
+
 // poop code
-type itemID =
+type itemtypes =
   | "AthenaCharacter"
   | "AthenaPickaxe"
   | "AthenaDance"
@@ -12,9 +15,6 @@ const itemPrefixThingy = {
   DANCE: "AthenaDance",
   GLIDER: "AthenaGlider",
 } as const;
-
-const shopFile = Bun.file("config/shop_config.json");
-const shopConfig = await shopFile.json();
 
 interface CatalogEntry {
   devName: string;
@@ -65,7 +65,7 @@ interface CatalogEntry {
 
 function createEntry(
   id: string,
-  type: itemID,
+  type: itemtypes,
   price: number,
   sectionId: "Featured" | "Daily"
 ): CatalogEntry {
@@ -133,23 +133,22 @@ function createEntry(
 
 function* createEntries(): Generator<{
   id: string;
-  type: itemID;
+  type: itemtypes;
   price: number;
 }> {
   const itemRegex = /^([A-Z]+)(\d*)$/;
 
-  for (const key in shopConfig) {
+  for (const key in config) {
     const match = key.match(itemRegex);
     if (!match) continue;
 
     const [_, prefix, number] = match;
-    const id = shopConfig[key];
+    const id = config[key];
     const type = itemPrefixThingy[prefix as keyof typeof itemPrefixThingy];
     if (!type) continue;
 
     const priceKey = `${prefix}${number}_PRICE`;
-    const price =
-      typeof shopConfig[priceKey] === "number" ? shopConfig[priceKey] : 0;
+    const price = typeof config[priceKey] === "number" ? config[priceKey] : 0;
 
     yield { id, type, price };
   }
