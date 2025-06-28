@@ -58,6 +58,7 @@ export default {
         email,
         password: hashedPassword,
         created: new Date(),
+        banned: false,
       });
 
       await Profiles.create({

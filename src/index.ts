@@ -7,6 +7,7 @@ import { Connect } from "./db/connect";
 import LoadRoutes from "./utils/routing/loadRoutes";
 import path from "path";
 import { createCatalog } from "./utils/creationTools/createShop";
+import { writeFile } from "fs/promises";
 
 const app = new Hono({ strict: false });
 
@@ -24,5 +25,11 @@ Connect(process.env.MONGO || "mongodb://localhost:27017/crystal");
 
 await LoadRoutes.loadRoutes(path.join(__dirname, "app"), app);
 
-await createCatalog();
+const catalog = createCatalog();
+
+await writeFile(
+  "src/resources/storefront/catalog.json",
+  JSON.stringify(catalog, null, 2)
+);
+
 await import("./bot/index");

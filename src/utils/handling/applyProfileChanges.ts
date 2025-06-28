@@ -14,9 +14,10 @@ export async function applyProfileChanges(
   profile.commandRevision += 1;
   profile.updated = new Date().toISOString();
 
-  await profiles.updateOne({
-    $set: { [`profiles.${profileId}`]: profile },
-  });
+  await profiles.updateOne(
+    { accountId: profiles.accountId },
+    { $set: { [`profiles.${profileId}`]: profile } }
+  );
 
   return {
     profileRevision: profile.rvn || 0,

@@ -1,3 +1,4 @@
+import { writeFile } from "fs/promises";
 import { Log } from "../handling/logging";
 const shop = Bun.file("config/shop_config.json");
 const config = await shop.json();
@@ -153,7 +154,6 @@ function* createEntries(): Generator<{
     yield { id, type, price };
   }
 }
-
 export function createCatalog() {
   Log("Created Catalog");
   const allEntries = Array.from(createEntries());
@@ -166,8 +166,19 @@ export function createCatalog() {
     .slice(5, 12)
     .map((e) => createEntry(e.id, e.type, e.price, "Daily"));
 
-  return [
-    { name: "BRWeeklyStorefront", catalogEntries: weekly },
-    { name: "BRDailyStorefront", catalogEntries: daily },
-  ];
+  return {
+    refreshIntervalHrs: 24,
+    dailyPurchaseHrs: 24,
+    expiration: "9999-12-31T00:00:00.000Z",
+    storefronts: [
+      {
+        name: "BRWeeklyStorefront",
+        catalogEntries: weekly,
+      },
+      {
+        name: "BRDailyStorefront",
+        catalogEntries: daily,
+      },
+    ],
+  };
 }

@@ -8,14 +8,14 @@ Features:
 - [x] Easy Setup
 - [x] Cloud Storage
 - [x] Maintenance System
+- [x] Discord Bot
+- [x] Purchasing
 
 To Do:
 
-- [ ] Discord Bot
 - [ ] XMPP
 - [ ] Discord Auth
 - [ ] Gifting
-- [ ] Purchasing
 - [ ] STW Support
 - [ ] Matchmaking/Matchmaker
 
