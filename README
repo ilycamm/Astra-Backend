@@ -8,6 +8,14 @@ Features:
 - [x] Easy Setup
 - [x] Cloud Storage
 - [x] Maintenance System
+
+To Do:
+
 - [ ] Discord Bot
+- [ ] XMPP
+- [ ] Discord Auth
+- [ ] Gifting
+- [ ] Purchasing
+- [ ] STW Support
 
 To change the shop, you must go into config/shop_config.json and change the price/id to whatever you like!
