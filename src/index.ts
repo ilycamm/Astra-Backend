@@ -25,3 +25,4 @@ Connect(process.env.MONGO || "mongodb://localhost:27017/crystal");
 await LoadRoutes.loadRoutes(path.join(__dirname, "app"), app);
 
 await createCatalog();
+await import("./bot/index");
