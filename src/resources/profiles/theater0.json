@@ -1,0 +1,79 @@
+{
+  "createdAt": "",
+  "updated": "",
+  "rvn": 0,
+  "wipeNumber": 1,
+  "_id": "",
+  "accountId": "",
+  "profileId": "theater0",
+  "version": "",
+  "stats": {
+    "attributes": {
+      "player_loadout": {
+        "primaryQuickBarRecord": {
+          "slots": [
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            }
+          ]
+        },
+        "secondaryQuickBarRecord": {
+          "slots": [
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            },
+            {
+              "items": []
+            }
+          ]
+        },
+        "zonesCompleted": 0,
+        "bPlayerIsNew": true
+      }
+    }
+  },
+  "items": {},
+  "commandRevision": 0
+}

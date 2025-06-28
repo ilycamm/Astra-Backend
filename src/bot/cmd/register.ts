@@ -13,16 +13,16 @@ export default {
       opt.setName("username").setDescription("Username").setRequired(true)
     )
     .addStringOption((opt) =>
-      opt.setName("email").setDescription("Email").setRequired(false)
+      opt.setName("email").setDescription("Email").setRequired(true)
     )
     .addStringOption((opt) =>
-      opt.setName("password").setDescription("Password").setRequired(false)
+      opt.setName("password").setDescription("Password").setRequired(true)
     ),
 
   async execute(interaction: ChatInputCommandInteraction) {
     const username = interaction.options.getString("username", true);
-    const emailInput = interaction.options.getString("email", false);
-    const passwordInput = interaction.options.getString("password", false);
+    const emailInput = interaction.options.getString("email", true);
+    const passwordInput = interaction.options.getString("password", true);
 
     const generateRandomPassword = () => {
       const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -59,6 +59,7 @@ export default {
         password: hashedPassword,
         created: new Date(),
         banned: false,
+        discordId: interaction.user.id,
       });
 
       await Profiles.create({

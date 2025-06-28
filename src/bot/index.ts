@@ -1,5 +1,6 @@
 import { Client, GatewayIntentBits, ActivityType } from "discord.js";
 import registerCommand from "./cmd/register";
+import deleteCommand from "./cmd/delete";
 import { Log } from "../utils/handling/logging";
 
 export const client = new Client({
@@ -11,7 +12,7 @@ export const client = new Client({
 
 const commands = async () => {
   try {
-    const cmds = [registerCommand.data.toJSON()];
+    const cmds = [registerCommand.data.toJSON(), deleteCommand.data.toJSON()];
     await client.application?.commands.set(cmds);
   } catch (error) {
     console.error(`Failed to register commands: ${error}`);
@@ -24,6 +25,9 @@ client.on("interactionCreate", async (interaction) => {
       switch (interaction.commandName) {
         case "register":
           await registerCommand.execute(interaction);
+          break;
+        case "delete":
+          await deleteCommand.execute(interaction);
           break;
       }
     } catch (error) {

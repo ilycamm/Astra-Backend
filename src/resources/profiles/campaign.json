@@ -1,0 +1,61 @@
+{
+  "created": "",
+  "updated": "",
+  "rvn": 1,
+  "wipeNumber": 1,
+  "accountId": "",
+  "profileId": "campaign",
+  "version": "no_version",
+  "items": {
+    "bb5e6cc5-8083-412e-a391-3b434462f4a6": {
+      "templateId": "Token:campaignaccess",
+      "attributes": {
+        "max_level_bonus": 0,
+        "level": 1,
+        "item_seen": false,
+        "xp": 0,
+        "favorite": false
+      },
+      "quantity": 1
+    }
+  },
+
+  "stats": {
+    "templateId": "profile_v2",
+    "attributes": {
+      "node_costs": {},
+      "mission_alert_redemption_record": {
+        "lastClaimedGuidPerTheater": null,
+        "lastClaimTimesMap": null
+      },
+      "twitch": {},
+      "client_settings": {
+        "pinnedQuestInstances": []
+      },
+      "level": 1,
+      "named_counters": {},
+      "default_hero_squad_id": "",
+      "collection_book": {},
+      "quest_manager": {},
+      "campaign_stats": [],
+      "bans": {},
+      "gameplay_stats": [],
+      "inventory_limit_bonus": 100000,
+      "current_mtx_platform": "Epic",
+      "weekly_purchases": {}
+    },
+    "mode_loadouts": [],
+    "in_app_purchases": {},
+    "daily_rewards": {},
+    "monthly_purchases": {},
+    "xp": 0,
+    "homebase": {
+      "townName": "",
+      "bannerIconId": "",
+      "bannerColorId": "",
+      " flagPattern": -1,
+      "flagColor": -1
+    },
+    "packs_granted": 0
+  }
+}

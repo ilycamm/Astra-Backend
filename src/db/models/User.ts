@@ -6,6 +6,7 @@ interface IUser {
   password: string;
   username: string;
   banned: boolean;
+  discordId: string;
   created: Date;
 }
 
@@ -16,6 +17,7 @@ const UserSchema: Schema<IUser> = new Schema({
   username: { type: String, required: true, unique: true },
   banned: { type: Boolean, required: false, unique: true },
   created: { type: Date, required: true, unique: true },
+  discordId: { type: String, required: false, unique: true },
 });
 
 const User = model<IUser>("Users", UserSchema);
