@@ -17,5 +17,6 @@ To Do:
 - [ ] Gifting
 - [ ] Purchasing
 - [ ] STW Support
+- [ ] Matchmaking/Matchmaker
 
 To change the shop, you must go into config/shop_config.json and change the price/id to whatever you like!
