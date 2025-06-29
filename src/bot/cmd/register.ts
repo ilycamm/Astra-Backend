@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import User from "../../db/models/User";
 import Profiles from "../../db/models/Profiles";
 import createProfiles from "../../utils/creationTools/createProfiles";
+import Tournaments from "../../db/models/Tournaments";
 
 export default {
   data: new SlashCommandBuilder()
@@ -68,6 +69,12 @@ export default {
         created: new Date().toISOString(),
         access_token: "",
         refresh_token: "",
+      });
+
+      await Tournaments.create({
+        accountId,
+        hype: 0,
+        divisions: ["NormalArenaDiv1"],
       });
 
       await interaction.reply({

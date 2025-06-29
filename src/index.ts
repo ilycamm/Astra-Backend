@@ -33,3 +33,4 @@ await writeFile(
 );
 
 await import("./bot/index");
+await import("./matchmaker/index");

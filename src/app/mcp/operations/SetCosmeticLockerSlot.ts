@@ -141,8 +141,6 @@ export default function () {
           });
         }
 
-        console.log(body);
-
         profile.rvn += 1;
         profile.commandRevision += 1;
         profile.updated = new Date().toISOString();

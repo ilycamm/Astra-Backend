@@ -38,6 +38,19 @@ export default function () {
       const body = await c.req.json();
       const { offerId, currency, purchaseQuantity } = body;
 
+      if (!process.env.ENABLE_SHOP) {
+        return c.json({
+          profileRevision: 0,
+          profileId: profileId,
+          profileChangesBaseRevision: 0,
+          profileChanges: [],
+          profileCommandRevision: 0,
+          serverTime: new Date().toISOString(),
+          multiUpdate: [],
+          responseVersion: 1,
+        });
+      }
+
       // console.log(body);
 
       if (!offerId || !currency || !purchaseQuantity) {
