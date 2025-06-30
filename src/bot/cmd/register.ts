@@ -1,4 +1,8 @@
-import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
+import {
+  ChatInputCommandInteraction,
+  SlashCommandBuilder,
+  EmbedBuilder,
+} from "discord.js";
 import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import User from "../../db/models/User";
@@ -47,13 +51,13 @@ export default {
     const existing = await User.findOne({ username });
     if (existing) {
       return interaction.reply({
-        content: "Username selected is already being used.",
+        content: "Username is already being used.",
         flags: 64,
       });
     }
 
     try {
-      const user = await User.create({
+      await User.create({
         accountId,
         username,
         email,
@@ -77,14 +81,29 @@ export default {
         divisions: ["NormalArenaDiv1"],
       });
 
-      await interaction.reply({
-        content: `Account Created!`,
+      const embed = new EmbedBuilder()
+        .setTitle("Welcome to Core!")
+        .setDescription(
+          `Welcome **${username}**! Your account has been created.`
+        )
+        .addFields(
+          { name: "Email", value: email, inline: true },
+          { name: "Account ID", value: accountId, inline: true }
+        )
+        .setColor("#00FF99")
+        .setTimestamp()
+        .setFooter({
+          text: "Core Backend",
+        });
+
+      return await interaction.reply({
+        embeds: [embed],
         flags: 64,
       });
     } catch (err) {
       console.error(err);
-      await interaction.reply({
-        content: "Account Could Not Be Made",
+      return await interaction.reply({
+        content: "Could not make your account, please contact support!",
         flags: 64,
       });
     }

@@ -1,6 +1,5 @@
 import { v4 } from "uuid";
 import app from "../../..";
-import Matchmaking from "../../../db/models/Matchmaking";
 import { bucket } from "./ticket";
 
 export default function () {

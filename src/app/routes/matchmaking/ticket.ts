@@ -1,6 +1,4 @@
-import { v4 } from "uuid";
 import app from "../../..";
-import Matchmaking from "../../../db/models/Matchmaking";
 import { getVersion } from "../../../utils/handling/getVersion";
 import jwt from "jsonwebtoken";
 

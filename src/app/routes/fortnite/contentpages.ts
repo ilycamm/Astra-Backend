@@ -123,7 +123,7 @@ export default function () {
               hidden: false,
               _type: "CommonUI Simple Message Base",
               title: "Core",
-              body: "Welcome to Core Backend!",
+              body: "Welcome to Core Backend! Made by Lunar, Github: https://github.com/lunarissigma/Core-Backend",
               spotlight: true,
             },
           ],
@@ -147,7 +147,7 @@ export default function () {
               hidden: false,
               _type: "CommonUI Emergency Notice Base",
               title: "Core",
-              body: "Welcome to Core Backend!",
+              body: "Welcome to Core Backend! Made by Lunar, Github: https://github.com/lunarissigma/Core-Backend",
             },
           ],
         },
@@ -161,11 +161,6 @@ export default function () {
         _activeDate: new Date().toISOString(),
         lastModified: new Date().toISOString(),
         _locale: "en-US",
-      },
-      battleroyalenewsv2: {
-        alwaysShow: true,
-        lastModified: "0000-00-00T00:00:00.000Z",
-        news: {},
       },
       dynamicbackgrounds: {
         backgrounds: {
