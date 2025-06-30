@@ -1,7 +1,11 @@
-import { writeFile } from "fs/promises";
+import type { CatalogEntry } from "../types/catalog";
 import { Log } from "../handling/logging";
 const shop = Bun.file("config/shop_config.json");
 const config = await shop.json();
+
+const file = await Bun.file("src/resources/storefront/catalog.json").json();
+
+const catalog = Array.isArray(file.storefronts) ? file.storefronts : [];
 
 // poop code
 type itemtypes =
@@ -16,53 +20,6 @@ const itemPrefixThingy = {
   DANCE: "AthenaDance",
   GLIDER: "AthenaGlider",
 } as const;
-
-interface CatalogEntry {
-  devName: string;
-  offerId: string;
-  fulfillmentIds: string[];
-  dailyLimit: number;
-  weeklyLimit: number;
-  monthlyLimit: number;
-  categories: string[];
-  prices: {
-    currencyType: string;
-    currencySubType: string;
-    regularPrice: number;
-    finalPrice: number;
-    saleExpiration: string;
-    basePrice: number;
-  }[];
-  meta: {
-    NewDisplayAssetPath: string;
-    SectionId: string;
-    LayoutId: string;
-    TileSize: string;
-    AnalyticOfferGroupId: string;
-    FirstSeen: string;
-  };
-  matchFilter: string;
-  filterWeight: number;
-  appStoreId: string[];
-  requirements: {
-    requirementType: string;
-    requiredId: string;
-    minQuantity: number;
-  }[];
-  offerType: string;
-  giftInfo: {
-    bIsEnabled: boolean;
-    forcedGiftBoxTemplateId: string;
-    purchaseRequirements: unknown[];
-    giftRecordIds: unknown[];
-  };
-  refundable: boolean;
-  metaInfo: { key: string; value: string }[];
-  displayAssetPath: string;
-  itemGrants: { templateId: string; quantity: number }[];
-  sortPriority: number;
-  catalogGroupPriority: number;
-}
 
 function createEntry(
   id: string,
@@ -137,10 +94,10 @@ function* createEntries(): Generator<{
   type: itemtypes;
   price: number;
 }> {
-  const itemRegex = /^([A-Z]+)(\d*)$/;
+  const pattern = /^([A-Z]+)(\d*)$/;
 
   for (const key in config) {
-    const match = key.match(itemRegex);
+    const match = key.match(pattern);
     if (!match) continue;
 
     const [_, prefix, number] = match;
@@ -154,31 +111,36 @@ function* createEntries(): Generator<{
     yield { id, type, price };
   }
 }
-export function createCatalog() {
-  Log("Created Catalog");
-  const allEntries = Array.from(createEntries());
 
-  const weekly = allEntries
+export function createCatalog() {
+  Log("Created Shop");
+  const entries = Array.from(createEntries());
+
+  const weekly = entries
     .slice(0, 5)
     .map((e) => createEntry(e.id, e.type, e.price, "Featured"));
 
-  const daily = allEntries
+  const daily = entries
     .slice(5, 12)
     .map((e) => createEntry(e.id, e.type, e.price, "Daily"));
+
+  const hasWeekly = catalog.some((s: any) => s.name === "BRWeeklyStorefront");
+  const hasDaily = catalog.some((s: any) => s.name === "BRDailyStorefront");
+
+  const returningCatalog = [
+    ...(!hasWeekly
+      ? [{ name: "BRWeeklyStorefront", catalogEntries: weekly }]
+      : []),
+    ...(!hasDaily
+      ? [{ name: "BRDailyStorefront", catalogEntries: daily }]
+      : []),
+    ...catalog,
+  ];
 
   return {
     refreshIntervalHrs: 24,
     dailyPurchaseHrs: 24,
     expiration: "9999-12-31T00:00:00.000Z",
-    storefronts: [
-      {
-        name: "BRWeeklyStorefront",
-        catalogEntries: weekly,
-      },
-      {
-        name: "BRDailyStorefront",
-        catalogEntries: daily,
-      },
-    ],
+    storefronts: returningCatalog,
   };
 }
