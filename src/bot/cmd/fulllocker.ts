@@ -5,6 +5,7 @@ import {
 } from "discord.js";
 import User from "../../db/models/User";
 import Profiles from "../../db/models/Profiles";
+import path from "node:path";
 
 export default {
   data: new SlashCommandBuilder()
@@ -44,7 +45,15 @@ export default {
       ).json();
 
       let athena = profile.profiles["athena"];
-      athena.items = fullLocker;
+      const allItems = require(path.join(
+        __dirname,
+        "..",
+        "..",
+        "resources",
+        "utilities",
+        "allCosmetics.json"
+      ));
+      athena.items = { ...athena.items, ...allItems };
 
       await profile?.updateOne({
         $set: { "profiles.athena.items": athena.items },
