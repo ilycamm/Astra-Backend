@@ -1,6 +1,7 @@
 import { Client, GatewayIntentBits, ActivityType } from "discord.js";
 import registerCommand from "./cmd/register";
 import deleteCommand from "./cmd/delete";
+import fullCommand from "./cmd/fulllocker";
 import { Log } from "../utils/handling/logging";
 
 export const client = new Client({
@@ -12,7 +13,11 @@ export const client = new Client({
 
 const commands = async () => {
   try {
-    const cmds = [registerCommand.data.toJSON(), deleteCommand.data.toJSON()];
+    const cmds = [
+      registerCommand.data.toJSON(),
+      deleteCommand.data.toJSON(),
+      fullCommand.data.toJSON(),
+    ];
     await client.application?.commands.set(cmds);
   } catch (error) {
     console.error(`Failed to register commands: ${error}`);
@@ -28,6 +33,9 @@ client.on("interactionCreate", async (interaction) => {
           break;
         case "delete":
           await deleteCommand.execute(interaction);
+          break;
+        case "fulllocker":
+          await fullCommand.execute(interaction);
           break;
       }
     } catch (error) {
