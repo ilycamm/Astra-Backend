@@ -107,10 +107,6 @@ export default function () {
           ].items = [""];
         }
 
-        // if (profile.items[body.itemToSlot].attributes.variants.length == 0) {
-        //   profile.items[body.itemToSlot].attributes.variants = body.variantUpdates || [];
-        // }
-
         if (Array.isArray(body.variantUpdates)) {
           profile.items[itemToSlot] = profile.items[itemToSlot] || {
             attributes: { variants: [] },

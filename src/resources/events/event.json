@@ -418,6 +418,73 @@
       "platforms": ["PS4", "XboxOne", "Switch", "Android", "IOS", "Windows"],
       "regionMappings": {},
       "regions": ["NAE", "ME", "NAW", "OCE", "ASIA", "EU", "BR"]
+    },
+    {
+      "gameId": "Fortnite",
+      "eventId": "corelg_cup",
+      "beginTime": "2025-4-1T17:00:00Z",
+      "endTime": "2025-4-1T20:00:00Z",
+      "displayDataId": "corelg",
+      "eventGroup": "corelg_group",
+      "announcementTime": "2025-04-3T08:00:00Z",
+      "regions": ["NAE"],
+      "regionMappings": {},
+      "platforms": ["Windows"],
+      "platformMappings": {},
+      "appId": null,
+      "environment": null,
+      "metadata": {
+        "TeamLockType": "Window",
+        "minimumAccountLevel": 1,
+        "DisqualifyType": "Window",
+        "RegionLockType": "Window",
+        "AccountLockType": "Window"
+      },
+      "eventWindows": [
+        {
+          "eventWindowId": "corelg_cup1",
+          "eventTemplateId": "corelg_cups",
+          "countdownBeginTime": "2025-3-31T15:00:00Z",
+          "beginTime": "2025-4-1T17:00:00Z",
+          "endTime": "2025-4-1T20:00:00Z",
+          "round": 0,
+          "payoutDelay": 32,
+          "isTBD": false,
+          "leaderboardId": "corecupleaderboardId",
+          "visibility": "public",
+          "teammateEligibility": "all",
+          "blackoutPeriods": [],
+          "scoreLocations": [
+            {
+              "leaderboardId": "corecupleaderboardId2",
+              "leaderboardDefId": "corecupleaderboardId",
+              "scoreId": null,
+              "scoreMode": "window",
+              "isMainWindowLeaderboard": true,
+              "windowEndCondition": null
+            }
+          ],
+          "canLiveSpectate": false,
+          "requireAllTokens": [],
+          "requireAnyTokens": [],
+          "requireNoneTokensCaller": [],
+          "requireAllTokensCaller": [],
+          "requireAnyTokensCaller": [],
+          "additionalRequirements": [],
+          "regionMappings": null,
+          "metadata": {
+            "ServerReplays": false,
+            "RoundType": "Qualifiers",
+            "liveSpectateAccessToken": "WeeklyTournamentSpectator"
+          }
+        }
+      ],
+
+      "link": {
+        "type": "br:tournament",
+        "code": "core_lg",
+        "version": 1
+      }
     }
   ],
   "player": {
