@@ -10,13 +10,13 @@ Features:
 - [x] Maintenance System
 - [x] Discord Bot
 - [x] Purchasing
+- [x] Matchmaking/Matchmaker
 
 To Do:
 
 - [ ] XMPP
 - [ ] Discord Auth
 - [ ] Gifting
-- [ ] Matchmaking/Matchmaker
 
 How to use:
 
