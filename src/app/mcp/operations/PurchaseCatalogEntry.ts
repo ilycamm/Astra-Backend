@@ -238,7 +238,7 @@ export default function () {
           : [];
 
       return c.json({
-        profiileRevision: common_core.rvn,
+        profileRevision: common_core.rvn,
         profileId,
         profileChangesBaseRevision: BaseRevision,
         profileChanges: ApplyProfileChanges,
