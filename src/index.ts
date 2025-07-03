@@ -26,7 +26,6 @@ Connect(process.env.MONGO || "mongodb://localhost:27017/crystal");
 await LoadRoutes.loadRoutes(path.join(__dirname, "app"), app);
 
 const catalog = createCatalog();
-
 await writeFile(
   "src/resources/storefront/catalog.json",
   JSON.stringify(catalog, null, 2)
