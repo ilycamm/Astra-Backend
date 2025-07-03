@@ -48,6 +48,14 @@ export default {
     const accountId = uuidv4().replace(/-/g, "");
     const userProfile = await createProfiles(accountId);
 
+    const exist = await User.findOne({ discordId: interaction.user.id });
+    if (exist) {
+      return interaction.reply({
+        content: "You already have an account. Please delete in via /delete!",
+        flags: 64,
+      });
+    }
+
     const existing = await User.findOne({ username });
     if (existing) {
       return interaction.reply({
