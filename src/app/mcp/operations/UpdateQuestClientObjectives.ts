@@ -6,7 +6,7 @@ export default function () {
   app.post(
     "/fortnite/api/game/v2/profile/:accountId/client/UpdateQuestClientObjectives",
     async (c) => {
-      const profileId = c.req.query("profileId");
+      const profileId = c.req.query("profileId") ?? "athena";
 
       var profiles: any = await Profiles.findOne({
         accountId: c.req.param("accountId"),
