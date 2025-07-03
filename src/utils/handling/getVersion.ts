@@ -5,7 +5,6 @@ interface Version {
 
 export async function getVersion(c: any): Promise<Version> {
   const header = c.req.header("user-agent") || "";
-  console.log(header);
   const splitter = header.match(/Release-(\d+)\.\d+-CL-(\d+)/);
 
   const build = parseInt(splitter[1]);

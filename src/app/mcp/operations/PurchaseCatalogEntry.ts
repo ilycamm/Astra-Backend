@@ -1,7 +1,6 @@
 import app from "../../..";
 import Profiles from "../../../db/models/Profiles";
 import { v4 as uuiv4 } from "uuid";
-import fs from "fs";
 import path from "path";
 
 export default function () {
@@ -50,8 +49,6 @@ export default function () {
           responseVersion: 1,
         });
       }
-
-      // console.log(body);
 
       if (!offerId || !currency || !purchaseQuantity) {
         return c.json({
@@ -102,7 +99,6 @@ export default function () {
         }
 
         if (!currentActiveStorefront) {
-          console.log("invalid offerid");
           return c.json({
             error: "Invalid offerId",
           });

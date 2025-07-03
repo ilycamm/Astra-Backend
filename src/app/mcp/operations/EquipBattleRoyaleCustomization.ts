@@ -37,7 +37,6 @@ export default function () {
           });
         }
 
-        // await giveFullLocker(profiles.accountId)
         const profile = profiles.profiles[profileId];
         const { itemToSlot, slotName, variantUpdates } = body;
         let ApplyProfileChanges: any[] = [];

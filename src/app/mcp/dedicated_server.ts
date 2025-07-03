@@ -6,16 +6,11 @@ export default function () {
   app.post(
     "/fortnite/api/game/v2/profile/:accountId/dedicated_server/QueryProfile",
     async (c) => {
-      let profileId = c.req.query("profileId");
-      if (!profileId) {
-        console.log("?????");
-        profileId = "athena";
-      }
-
-      console.log("sadsadasd");
+      let profileId = c.req.query("profileId") ?? "athena";
       var profiles: any = await Profiles.findOne({
         accountId: c.req.param("accountId"),
       });
+
       let profile = profiles?.profiles[profileId];
       if (!profile || !profiles) {
         return c.json({
@@ -30,11 +25,12 @@ export default function () {
         });
       }
 
-      if (!profile && profileId !== "athena" && profileId !== "common_core")
+      if (!profile && profileId !== "athena" && profileId !== "common_core") {
         return c.json({
           profileRevision: profile.rvn || 0,
           profileId: profileId,
         });
+      }
 
       const response = await applyProfileChanges(profile, profileId, profiles);
 
@@ -45,12 +41,7 @@ export default function () {
   app.post(
     "/fortnite/api/game/v2/profile/:accountId/client/QueryProfile",
     async (c) => {
-      let profileId = c.req.query("profileId");
-      if (!profileId) {
-        console.log("?????");
-        profileId = "athena";
-      }
-
+      let profileId = c.req.query("profileId") ?? "athena";
       var profiles: any = await Profiles.findOne({
         accountId: c.req.param("accountId"),
       });
@@ -68,15 +59,11 @@ export default function () {
         });
       }
 
-      const body = await c.req.json();
-      if (!profile && profileId !== "athena" && profileId !== "common_core")
+      if (!profile && profileId !== "athena" && profileId !== "common_core") {
         return c.json({
           profileRevision: profile.rvn || 0,
           profileId: profileId,
         });
-
-      if (profileId == "creative") {
-        console.log(body);
       }
 
       const response = await applyProfileChanges(profile, profileId, profiles);

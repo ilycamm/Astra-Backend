@@ -30,7 +30,6 @@ export default function () {
       let ApplyProfileChanges: any = [];
       const body = await c.req.json();
       const { itemIds, itemFavStatus } = body;
-      console.log(itemIds);
 
       for (const item of itemIds) {
         profile.items[item].attributes.favorite = itemFavStatus;
