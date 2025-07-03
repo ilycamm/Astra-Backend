@@ -8,7 +8,7 @@ export default function () {
     const date = today.toISOString();
 
     const ver = await getVersion(c);
-    console.log(ver.build);
+    if (!ver) return c.json({ error: "Incorrect HTTP Method" });
 
     return c.json({
       channels: {

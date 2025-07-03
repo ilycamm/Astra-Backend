@@ -6,6 +6,7 @@ import { getVersion } from "../../../utils/handling/getVersion";
 export default function () {
   app.get("/api/v1/events/Fortnite/download/:accountId", async (c) => {
     const ver = await getVersion(c);
+    if (!ver) return c.json({ error: "Incorrect HTTP Method" });
     const user = await User.findOne({ accountId: c.req.param("accountId") });
     if (!user) return c.json([], 404);
 
@@ -13,7 +14,6 @@ export default function () {
     if (!tournament) return c.json([], 404);
 
     const hypeName = ver.build < 15 ? "NormalHype" : "Hype";
-
     const event: any = await Bun.file("src/resources/events/event.json").json();
 
     event.player.accountId = tournament.accountId;
