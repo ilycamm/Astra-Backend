@@ -1,6 +1,8 @@
 import app from "../../..";
 import User from "../../../db/models/User";
 
+export let accountIds: any;
+
 export default function () {
   app.get("/account/api/public/account/:accountid", async (c) => {
     const user = await User.findOne({ accountId: c.req.param("accountid") });
@@ -17,6 +19,9 @@ export default function () {
         intent: "prod",
       });
     }
+    const accountId = user.accountId;
+    const ids = Array.isArray(accountId) ? accountId : [accountId];
+    accountIds = ids[0];
 
     return c.json({
       id: user.accountId,
@@ -44,6 +49,9 @@ export default function () {
   app.get("/account/api/public/account", async (c) => {
     var response = [];
     const { accountId } = c.req.queries();
+
+    const ids = Array.isArray(accountId) ? accountId : [accountId];
+    accountIds = ids[0];
 
     if (typeof accountId == "string") {
       let user = await User.findOne({

@@ -2,6 +2,10 @@ import app from "../../..";
 
 export default function () {
   app.post("/datarouter/api/v1/public/data", async (c) => {
-    return c.json([], 200);
+    return c.json([]);
+  });
+
+  app.post("/telemetry/data/datarouter/api/v1/public/data", async (c) => {
+    return c.json([]);
   });
 }
