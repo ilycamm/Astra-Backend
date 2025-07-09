@@ -13,10 +13,10 @@ interface IUser {
 const UserSchema: Schema<IUser> = new Schema({
   accountId: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
   username: { type: String, required: true, unique: true },
-  banned: { type: Boolean, required: false, unique: true },
-  created: { type: Date, required: true, unique: true },
+  banned: { type: Boolean, required: false, unique: false },
+  created: { type: Date, required: true },
   discordId: { type: String, required: false, unique: true },
 });
 
