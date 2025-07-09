@@ -5,7 +5,7 @@ import {
 } from "discord.js";
 import User from "../../db/models/User";
 import Profiles from "../../db/models/Profiles";
-import path from "node:path";
+import { giveFullLocker } from "../../utils/handling/giveFullLocker";
 
 export default {
   data: new SlashCommandBuilder()
@@ -29,35 +29,7 @@ export default {
         return await interaction.reply({ embeds: [embed], flags: 64 });
       }
 
-      const profile = await Profiles.findOne({ accountId: user.accountId });
-      if (!profile) {
-        const embed = new EmbedBuilder()
-          .setTitle("Core")
-          .setDescription("Please contact support, your profile was not found.")
-          .setColor("Orange")
-          .setTimestamp();
-
-        return await interaction.reply({ embeds: [embed], flags: 64 });
-      }
-
-      const fullLocker = await Bun.file(
-        "src/resources/utilities/allCosmetics.json"
-      ).json();
-
-      let athena = profile.profiles["athena"];
-      const allItems = require(path.join(
-        __dirname,
-        "..",
-        "..",
-        "resources",
-        "utilities",
-        "allCosmetics.json"
-      ));
-      athena.items = { ...athena.items, ...allItems };
-
-      await profile?.updateOne({
-        $set: { "profiles.athena.items": athena.items },
-      });
+      await giveFullLocker(user.accountId);
 
       const embed = new EmbedBuilder()
         .setTitle("Core")

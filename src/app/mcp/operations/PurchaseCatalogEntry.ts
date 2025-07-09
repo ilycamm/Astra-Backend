@@ -121,8 +121,14 @@ export default function () {
         }
 
         const alreadyOwned = currentActiveStorefront.itemGrants.some(
-          (item: any) => profile.items[item.templateId]
+          (item: any) => {
+            const normalizedTemplateId = item.templateId.toLowerCase();
+            return Object.keys(profile.items).some(
+              (key) => key.toLowerCase() === normalizedTemplateId
+            );
+          }
         );
+
         if (alreadyOwned) {
           return c.json({ error: "You already own this item." });
         }
@@ -156,6 +162,19 @@ export default function () {
             },
             quantity,
           };
+
+          MultiUpdate.push({
+            changeType: "itemAdded",
+            itemId: templateId,
+            item: profile.items[templateId],
+          });
+
+          notification[0].lootResult.items.push({
+            itemType: templateId,
+            itemGuid: templateId,
+            itemProfile: "athena",
+            quantity: 1,
+          });
 
           MultiUpdate.push({
             changeType: "itemAdded",
