@@ -124,17 +124,19 @@ export function createCatalog() {
     .slice(5, 12)
     .map((e) => createEntry(e.id, e.type, e.price, "Daily"));
 
-  const hasWeekly = catalog.some((s: any) => s.name === "BRWeeklyStorefront");
-  const hasDaily = catalog.some((s: any) => s.name === "BRDailyStorefront");
-
   const returningCatalog = [
-    ...(!hasWeekly
-      ? [{ name: "BRWeeklyStorefront", catalogEntries: weekly }]
-      : []),
-    ...(!hasDaily
-      ? [{ name: "BRDailyStorefront", catalogEntries: daily }]
-      : []),
-    ...catalog,
+    {
+      name: "BRWeeklyStorefront",
+      catalogEntries: weekly,
+    },
+    {
+      name: "BRDailyStorefront",
+      catalogEntries: daily,
+    },
+    ...catalog.filter(
+      (s: any) =>
+        s.name !== "BRWeeklyStorefront" && s.name !== "BRDailyStorefront"
+    ),
   ];
 
   return {
