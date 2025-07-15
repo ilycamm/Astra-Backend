@@ -13,13 +13,14 @@ export default function () {
     const tournament = await Tournaments.findOne({ accountId: user.accountId });
     if (!tournament) return c.json([], 404);
 
-    const hypeName = ver.build < 15 ? "NormalHype" : "Hype";
+    const hypeName = "NormalHype";
     const event: any = await Bun.file("src/resources/events/event.json").json();
 
     event.player.accountId = tournament.accountId;
     event.player.persistentScores = { [hypeName]: tournament.hype };
     event.player.tokens = tournament.divisions;
 
+    console.log(event);
     return c.json(event);
   });
 }
