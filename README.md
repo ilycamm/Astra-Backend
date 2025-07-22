@@ -20,6 +20,7 @@ To Do:
 
 Requirements:
 Bun: https://bun.sh/
+MongoDB: https://www.mongodb.com/try/download/community-kubernetes-operator
 
 How to use:
 
