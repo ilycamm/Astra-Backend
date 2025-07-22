@@ -18,6 +18,9 @@ To Do:
 - [ ] Discord Auth
 - [ ] Gifting
 
+Requirements:
+Bun: https://bun.sh/
+
 How to use:
 
 How to change the Shop? To change the shop, you must go into config/shop_config.json and change the price/id to whatever you like!
