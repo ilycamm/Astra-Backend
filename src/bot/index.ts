@@ -3,6 +3,7 @@ import registerCommand from "./cmd/register";
 import deleteCommand from "./cmd/delete";
 import fullCommand from "./cmd/fulllocker";
 import { Log } from "../utils/handling/logging";
+import "dotenv/config";
 
 export const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildPresences],
@@ -53,4 +54,7 @@ client.on("ready", async () => {
   Log(`Logged in as ${client.user?.tag}`);
 });
 
-client.login(process.env.BOT_TOKEN);
+const origin = (process.env.BOT_TOKEN ?? "").trim();
+const token = origin.replace(/^Bot\s+/i, "");
+
+client.login(token);

@@ -52,8 +52,7 @@ export default function () {
         "../../../resources/quests/repeatables"
       );
 
-      const dailyFiles = fs.readdirSync(repeatablesPath);
-      console.log("[DAILY QUESTS]", dailyFiles);
+      const dailyFiles = fs.readdirSync(repeatablesPath).slice(0, 3);
 
       if (process.env.WEEKLY == "true") {
         const weeklys = await Bun.file(
@@ -97,6 +96,17 @@ export default function () {
         const filePath = path.join(repeatablesPath, file);
         const content = JSON.parse(fs.readFileSync(filePath, "utf8"));
         const id = uuid();
+        if (!profile.items) {
+          return c.json({ error: "Somehow cooked.." });
+        }
+
+        if (
+          Object.values(profile.items).some(
+            (item: any) => item.templateId === `Quest:${content.Name}`
+          )
+        ) {
+          continue;
+        }
 
         const item = {
           templateId: `Quest:${content.Name}`,
@@ -147,7 +157,6 @@ export default function () {
         profileId,
         profileChangesBaseRevision: BaseRevision,
         profileChanges: ApplyProfileChanges,
-
         profileCommandRevision: profile.commandRevision,
         serverTime: new Date().toISOString(),
         multiUpdate: MultiUpdate,

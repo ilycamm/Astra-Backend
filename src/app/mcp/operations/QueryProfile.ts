@@ -25,11 +25,7 @@ export default function () {
         });
       }
 
-      const response = await applyProfileChanges(
-        profile,
-        profileId || "athena",
-        profiles
-      );
+      const response = await applyProfileChanges(profile, profileId, profiles);
 
       return c.json(response);
     }

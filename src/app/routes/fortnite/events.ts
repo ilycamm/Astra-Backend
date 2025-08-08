@@ -7,6 +7,9 @@ export default function () {
   app.get("/api/v1/events/Fortnite/download/:accountId", async (c) => {
     const ver = await getVersion(c);
     if (!ver) return c.json({ error: "Incorrect HTTP Method" });
+    if (ver.build < 8) {
+      return c.json({});
+    }
     const user = await User.findOne({ accountId: c.req.param("accountId") });
     if (!user) return c.json([], 404);
 
@@ -20,7 +23,6 @@ export default function () {
     event.player.persistentScores = { [hypeName]: tournament.hype };
     event.player.tokens = tournament.divisions;
 
-    console.log(event);
     return c.json(event);
   });
 }

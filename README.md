@@ -3,7 +3,7 @@ Universal Fortnite backend made in TypeScript and uses MongoDB
 
 Features:
 
-- [x] Universal Support
+- [x] Universal Support/Latest
 - [x] Shop and Section Generator
 - [x] Easy Setup
 - [x] Cloud Storage

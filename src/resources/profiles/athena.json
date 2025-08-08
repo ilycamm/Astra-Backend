@@ -36,7 +36,15 @@
       "xp": 0,
       "season_friend_match_boost": 1,
       "active_loadout_index": 0,
-      "past_seasons": []
+      "past_seasons": [],
+      "favorite_character": "",
+      "favorite_spray": [],
+      "favorite_backpack": "",
+      "favorite_pickaxe": "AthenaPickaxe:DefaultPickaxe",
+      "favorite_glider": "AthenaGlider:DefaultGlider",
+      "favorite_dance": ["", "", "", "", "", ""],
+      "favorite_musicpack": "",
+      "favorite_itemwraps": ["", "", "", "", "", "", ""]
     }
   },
   "items": {

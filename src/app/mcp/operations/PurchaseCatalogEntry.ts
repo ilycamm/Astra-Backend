@@ -248,21 +248,20 @@ export default function () {
         });
       }
 
-      const profileRevision = profile.rvn;
-      const queryRevision = parseInt(rvn ?? "0") || 0;
-
-      ApplyProfileChanges =
-        queryRevision !== profileRevision
-          ? [{ changeType: "fullProfileUpdate", profile: common_core }]
-          : [];
+      ApplyProfileChanges = [
+        {
+          changeType: "fullProfileUpdate",
+          profile: profile,
+        },
+      ];
 
       return c.json({
-        profileRevision: common_core.rvn,
-        profileId,
+        profileRevision: common_core.rvn || 0,
+        profileId: profileId,
         profileChangesBaseRevision: BaseRevision,
         profileChanges: ApplyProfileChanges,
         notifications: notification,
-        profileCommandRevision: common_core.commandRevision,
+        profileCommandRevision: common_core.commandRevision || 0,
         serverTime: new Date().toISOString(),
         multiUpdate: [
           {

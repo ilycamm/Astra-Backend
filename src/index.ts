@@ -21,7 +21,7 @@ app.notFound(async (c) => {
 export default app;
 
 Log(`Running on port ` + process.env.PORT);
-Connect(process.env.MONGO || "mongodb://localhost:27017/crystal");
+Connect(process.env.MONGO || "mongodb://localhost:27017/core");
 
 await LoadRoutes.loadRoutes(path.join(__dirname, "app"), app);
 
