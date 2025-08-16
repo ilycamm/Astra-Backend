@@ -1,27 +1,39 @@
 import app from "../../..";
 import Matchmaking from "../../../db/models/Matchmaking";
 
-// most shit system, 2 lazy to rewrite crystals code
+// shit system, rewriting soon
 export default function () {
-  app.get("/v1/matchmaker/send/:status/:ip/:region/:playlist", async (c) => {
+  app.post("/v1/matchmaker/send/:status", async (c) => {
     const { status } = c.req.param();
-
-    if (!status) return c.json({ error: "Please provide a status!" });
-
-    if (status == "up") {
-      await Matchmaking.create({
-        status: "UP",
+    if (!status)
+      return c.json({
+        error: "errors.com.core.sessions.invalid_status",
       });
-    } else if (status == "offline") {
-      await Matchmaking.deleteOne({
-        status: "UP",
-      });
+
+    const body = await c.req.json();
+    if (!body) return c.json({ error: "errors.com.core.parsing.invalid_body" });
+
+    let region = body.region;
+
+    if (status.toLowerCase() === "online") {
+      await Matchmaking.updateOne(
+        { status: "online" },
+        { region: region },
+        { upsert: true }
+      );
+    } else if (status.toLowerCase() === "offline") {
+      await Matchmaking.deleteOne({ status: "online", region: region });
+    } else {
+      return c.json(
+        { error: "errors.com.core.common.sessions.invalid_status" },
+        400
+      );
     }
 
-    return c.json({ success: "matchmake thing" });
+    return c.json({ success: true, status });
   });
 
-  app.get("/v1/matchmaking/status/any", async (c) => {
+  app.get("/v1/matchmaking/status", async (c) => {
     const anyOnline = await Matchmaking.findOne({ status: "UP" });
     return c.json({ status: anyOnline ? "up" : "offline" });
   });

@@ -16,7 +16,7 @@ const UserSchema: Schema<IUser> = new Schema({
   password: { type: String, required: true },
   username: { type: String, required: true, unique: true },
   banned: { type: Boolean, required: false, unique: false },
-  created: { type: Date, required: true },
+  created: { type: Date, required: false },
   discordId: { type: String, required: false, unique: true },
 });
 

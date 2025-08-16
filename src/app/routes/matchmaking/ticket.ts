@@ -1,8 +1,10 @@
 import app from "../../..";
+import Matchmaking from "../../../db/models/Matchmaking";
 import { getVersion } from "../../../utils/handling/getVersion";
 import jwt from "jsonwebtoken";
 
 export let bucket: any;
+export let region: any;
 
 export default function () {
   app.get(
