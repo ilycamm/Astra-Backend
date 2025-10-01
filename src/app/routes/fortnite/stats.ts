@@ -15,4 +15,13 @@ export default function () {
       maxSize: 1000,
     });
   });
+
+  app.get("/statsproxy/api/statsv2/account/:accountId", async (c) => {
+    return c.json({
+      startTime: 0,
+      endTime: 0,
+      stats: {},
+      accountId: c.req.param("accountId"),
+    });
+  });
 }

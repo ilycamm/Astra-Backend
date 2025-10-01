@@ -14,7 +14,6 @@ const app = new Hono({ strict: false });
 app.use(cors());
 
 app.notFound(async (c) => {
-  console.log("Route not found: " + c.req.url);
   return HandleNotFound(c);
 });
 
