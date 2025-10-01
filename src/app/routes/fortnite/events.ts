@@ -38,4 +38,8 @@ export default function () {
 
     return c.json(history);
   });
+
+  app.post("/fortnite/api/game/v2/events/v2/setSubgroup/*", async (c) => {
+    return c.json([]);
+  });
 }
