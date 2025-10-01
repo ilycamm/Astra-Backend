@@ -12,7 +12,6 @@ import { writeFile } from "fs/promises";
 const app = new Hono({ strict: false });
 
 app.use(cors());
-app.use(logger());
 
 app.notFound(async (c) => {
   return HandleNotFound(c);
