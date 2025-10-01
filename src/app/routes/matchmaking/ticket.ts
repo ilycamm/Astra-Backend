@@ -33,7 +33,7 @@ export default function () {
       const data = matchmakingData.split(".");
 
       return c.json({
-        serviceUrl: `ws://${process.env.MMIP}${process.env.MMPORT}`,
+        serviceUrl: `ws://127.0.0.1:80`,
         ticketType: "mms-player",
         payload: data[0] + "." + data[1],
         signature: data[2],
