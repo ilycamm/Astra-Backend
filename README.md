@@ -11,10 +11,10 @@ Features:
 - [x] Discord Bot
 - [x] Purchasing
 - [x] Matchmaking/Matchmaker
+- [x] XMPP
 
 To Do:
 
-- [ ] XMPP
 - [ ] Discord Auth
 - [ ] Gifting
 
