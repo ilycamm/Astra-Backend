@@ -2,6 +2,8 @@ import app from "../../..";
 import Tournaments from "../../../db/models/Tournaments";
 import User from "../../../db/models/User";
 import { getVersion } from "../../../utils/handling/getVersion";
+import path from "path";
+import fs from "fs";
 
 export default function () {
   app.get("/api/v1/events/Fortnite/download/:accountId", async (c) => {
@@ -24,5 +26,16 @@ export default function () {
     event.player.tokens = tournament.divisions;
 
     return c.json(event);
+  });
+
+  app.get("/api/v1/events/Fortnite/:eventId/history/:accountId", async (c) => {
+    var history: any = await Bun.file(
+      "src/resources/events/history.json"
+    ).json();
+    history[0].scoreKey.eventId = c.req.param("eventId");
+    history[0].teamId = c.req.param("accountId");
+    history[0].teamAccountIds.push(c.req.param("accountId"));
+
+    return c.json(history);
   });
 }
